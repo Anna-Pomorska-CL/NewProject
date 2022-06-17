@@ -7,7 +7,12 @@ Feature: Log in to the created user
     Then user click on Addresses
     And user click on Create new address
     And user fill in "<alias>", "<address>", "<city>", "<postal_code>", "<country>", "<phone>" and click save button
-    And user check if all data is correct
+    Then lastAddress line 0 equals "<alias>"
+    Then lastAddress line 2 equals "<address>"
+    Then lastAddress line 3 equals "<city>"
+    Then lastAddress line 4 equals "<postal_code>"
+    Then lastAddress line 5 equals "<country>"
+    Then lastAddress line 6 equals "<phone>"
     And Browser is closed
 
 

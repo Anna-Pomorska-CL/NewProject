@@ -4,8 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Zadanie1 {
     WebDriver driver;
@@ -50,13 +54,15 @@ public class Zadanie1 {
 
     }
 
-    @And("user check if all data is correct")
-    public void userCheckIfAllDataIsCorrect() {
+    @And("lastAddress line {int} equals {string}")
+    public void userChecksIfAllDataIsCorrect(int position, String value) {
+        String lastAddress = driver.findElement(By.xpath("(//*[@class=\"address\"])[last()]")).getText();
+        String[] rows = lastAddress.split("\n");
+        assertThat(rows[position], is(value));
     }
 
     @And("Browser is closed")
-    public void browserIsClosed() {
-            driver.quit();
+    public void browserIsClosed() { driver.quit();
     }
     }
 
